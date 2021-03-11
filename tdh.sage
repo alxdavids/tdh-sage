@@ -47,7 +47,7 @@ class TrapdoorHashDDH:
   
   def E(self, ek, x, r):
     """
-    Blah blah blah
+    Encode function
     """
     (U, B, n) = ek
     e = r*U

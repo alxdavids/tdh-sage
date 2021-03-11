@@ -14,8 +14,13 @@ sagelib/%.py: %.sage
 	@sage --preparse $<
 	@mv $<.py $@
 
-test: pyfiles
+test: test_tdh test_ot
+
+test_tdh: pyfiles
 	sage test_tdh.sage
+
+test_ot: pyfiles
+	sage test_ot.sage
 
 .PHONY: clean
 clean:
