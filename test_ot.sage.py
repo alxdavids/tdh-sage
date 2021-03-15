@@ -47,14 +47,14 @@ def checkBatchOT(tdh):
       raise e
 
 def checkStringOT(tdh):
-  inp_send = _sage_const_0 
+  inp_send = _sage_const_1 
   inp_rec = ["hello", "btw", "world"]
   sOT = StringOT(tdh, len(inp_rec), max_length_item(inp_rec)*_sage_const_8 )
   (st, msg1) = run_message(sOT.one, inp_send)
   msg2 = run_message(sOT.two, msg1, inp_rec)
   s = run_message(sOT.three, st, msg2)
   try:
-    assert s == "hello"
+    assert s == "btw"
   except AssertionError as e:
     print("s: {}".format(s))
     raise e
@@ -80,8 +80,8 @@ def checkDDHRate1StringOT():
   checkStringOT(tdh)
 
 if __name__ == "__main__":
-  # run_test(checkDDHBatchOT)
-  # run_test(checkDDHRate1BatchOT)
+  run_test(checkDDHBatchOT)
+  run_test(checkDDHRate1BatchOT)
   run_test(checkDDHStringOT)
   run_test(checkDDHRate1StringOT)
 
