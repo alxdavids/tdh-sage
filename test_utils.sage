@@ -1,3 +1,5 @@
+import time
+
 def create_p256_curve():
   # Finite field prime
   p256 = 0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF
@@ -26,3 +28,17 @@ def create_p256_curve():
   G = EC(FF(gx), FF(gy))
 
   return G, EC, p256
+
+def run_test(function):
+  print("******** Running: {} ********".format(function.__name__))
+  start = time.perf_counter()
+  function()
+  end = time.perf_counter()
+  print("******** Finished: {} after {:0.4f} seconds ********".format(function.__name__, end - start))
+
+def run_internal(function, *args):
+  start = time.perf_counter()
+  ret = function(*args)
+  end = time.perf_counter()
+  print(f"Function: {function.__name__}, total time: {end-start:0.4f}")
+  return ret
