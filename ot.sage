@@ -62,7 +62,6 @@ class StringOT:
       padded_bits = pad_bits(bits, self.n)
       for j in range(0, self.n):
         val = j*self.k + l
-        print(f"j: {j}, k: {self.k}, l: {l}, n: {self.n}, len(bits): {len(bits)}, len(pad_bits): {len(padded_bits)}")
         bOT_inp_rec[val] = int(padded_bits[j])
     (H, e) = self.bOT.two(msg1, bOT_inp_rec, self.k, self.n)
     return (H, e)
@@ -72,5 +71,5 @@ class StringOT:
     assert len(s) % 8 == 0
     chrs = []
     for i in range(0, int(len(s)/8)):
-      chrs.append("".join(s[int(i*8):int((i+1)*8)]))
+      chrs.append("".join(str(x) for x in s[int(i*8):int((i+1)*8)]))
     return bits_to_string(chrs).strip()
